@@ -1,0 +1,105 @@
+[
+    {
+        "id": "7f99d95c.c921a8",
+        "type": "tab",
+        "label": "Flow 3",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "74aabe64.e5cab",
+        "type": "inject",
+        "z": "7f99d95c.c921a8",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 170,
+        "y": 220,
+        "wires": [
+            [
+                "819c40e7.7849d",
+                "18079a97.537045"
+            ]
+        ]
+    },
+    {
+        "id": "819c40e7.7849d",
+        "type": "function",
+        "z": "7f99d95c.c921a8",
+        "name": "Payload",
+        "func": "msg.headers={\n    deviceKey:\"AAzsuCTHuw3XdKQL\"\n};\nmsg.payload=\"Temperature,,26\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 340,
+        "y": 220,
+        "wires": [
+            [
+                "32500faa.1a3f1"
+            ]
+        ]
+    },
+    {
+        "id": "32500faa.1a3f1",
+        "type": "http request",
+        "z": "7f99d95c.c921a8",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "url": "https://api.mediatek.com/mcs/v2/devices/DaX01WEv/datapoints.csv",
+        "tls": "",
+        "x": 510,
+        "y": 220,
+        "wires": [
+            [
+                "63c1a8d5.96fbe8",
+                "a6d4952b.9de588"
+            ]
+        ]
+    },
+    {
+        "id": "63c1a8d5.96fbe8",
+        "type": "http response",
+        "z": "7f99d95c.c921a8",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 680,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "a6d4952b.9de588",
+        "type": "debug",
+        "z": "7f99d95c.c921a8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 700,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "18079a97.537045",
+        "type": "function",
+        "z": "7f99d95c.c921a8",
+        "name": "HUM",
+        "func": "msg.headers={\n    deviceKey:\"AAzsuCTHuw3XdKQL\"\n};\nmsg.payload=\"Humidity,,95\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 310,
+        "y": 280,
+        "wires": [
+            [
+                "32500faa.1a3f1"
+            ]
+        ]
+    }
+]
