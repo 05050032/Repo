@@ -1,0 +1,101 @@
+[
+    {
+        "id": "dd8917cd.4aa8f8",
+        "type": "tab",
+        "label": "Flow 4",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "c7aa9bfa.d53428",
+        "type": "http in",
+        "z": "dd8917cd.4aa8f8",
+        "name": "",
+        "url": "/pin4",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 320,
+        "y": 140,
+        "wires": [
+            [
+                "496c99d4.c84ff8"
+            ]
+        ]
+    },
+    {
+        "id": "7cd2e3a6.275b6c",
+        "type": "rpi-gpio in",
+        "z": "dd8917cd.4aa8f8",
+        "name": "GPIO4",
+        "pin": "7",
+        "intype": "up",
+        "debounce": "25",
+        "read": true,
+        "x": 320,
+        "y": 220,
+        "wires": [
+            [
+                "74beb275.9f3f0c"
+            ]
+        ]
+    },
+    {
+        "id": "74beb275.9f3f0c",
+        "type": "function",
+        "z": "dd8917cd.4aa8f8",
+        "name": "set GPIO",
+        "func": "global.set(\"GPIO\",msg.payload)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 470,
+        "y": 220,
+        "wires": [
+            [
+                "1ad0f13e.73e9ef"
+            ]
+        ]
+    },
+    {
+        "id": "496c99d4.c84ff8",
+        "type": "function",
+        "z": "dd8917cd.4aa8f8",
+        "name": "get GPIO",
+        "func": "msg.payload=global.get(\"GPIO\");\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 480,
+        "y": 140,
+        "wires": [
+            [
+                "cb9b6362.7a0cf",
+                "1ad0f13e.73e9ef"
+            ]
+        ]
+    },
+    {
+        "id": "cb9b6362.7a0cf",
+        "type": "http response",
+        "z": "dd8917cd.4aa8f8",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 680,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "1ad0f13e.73e9ef",
+        "type": "debug",
+        "z": "dd8917cd.4aa8f8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 700,
+        "y": 240,
+        "wires": []
+    }
+]
